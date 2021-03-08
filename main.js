@@ -1,24 +1,10 @@
 $(function() {
-  function hexFromRGB(r, g, b) {
-    var hex = [
-      r.toString( 16 ),
-      g.toString( 16 ),
-      b.toString( 16 )
-    ];
-    $.each( hex, function( nr, val ) {
-      if ( val.length === 1 ) {
-        hex[ nr ] = "0" + val;
-      }
-    });
-    return hex.join( "" ).toUpperCase();
-  }
-  function refreshSwatch() {
-    var red = $( "#red" ).slider( "value" ),
+  function setColor() {
+    let red = $( "#red" ).slider( "value" ),
       green = $( "#green" ).slider( "value" ),
-      blue = $( "#blue" ).slider( "value" ),
-      hex = hexFromRGB( red, green, blue );
-    $( "#swatch" ).css( "background-color", "#" + hex );
-    $( "#swatchText" ).css( "color", "#" + hex );
+      blue = $( "#blue" ).slider( "value" );
+    $( "#background-id" ).css( "background-color", "#" + "rgb(" + red + ", " + green + ", " + blue + ")" );
+    $( "#text-id" ).css( "color", "#" + "rgb(" + red + ", " + green + ", " + blue + ")" );
   }
 
   $( "#red, #green, #blue" ).slider({
@@ -26,21 +12,17 @@ $(function() {
     range: "min",
     max: 255,
     value: 127,
-    slide: refreshSwatch,
-    change: refreshSwatch
+    slide: setColor,
+    change: setColor
   });
-  $( "#red" ).slider( "value", 255 );
-  $( "#green" ).slider( "value", 255 );
-  $( "#blue" ).slider( "value", 255 );
 
-  $( "#color" ).click(function() {
+  $("#color" ).click(function() {
     $(".background").attr('id', '');
-    $(".text").attr('id', 'swatchText');
+    $(".text").attr('id', 'text-id');
   });
 
-  $( "#backgroundColor" ).click(function() {
+  $("#backgroundColor" ).click(function() {
     $(".text").attr('id', '');  
-    $(".background").attr('id', 'swatch');
+    $(".background").attr('id', 'background-id');
   });
 });
-

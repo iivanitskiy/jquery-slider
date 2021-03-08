@@ -4,12 +4,14 @@
   width: 300px;
   margin: 15px;
 }
-.swatch {
-  width: 120px;
-  height: 100px;
+
+.background {
   margin-top: 18px;
   margin-left: 350px;
   background-image: none;
+  width: 400px; 
+  height: auto; 
+  padding-left: 10px;
 }
 
 #red .ui-slider-range { background: #ef2929; }
